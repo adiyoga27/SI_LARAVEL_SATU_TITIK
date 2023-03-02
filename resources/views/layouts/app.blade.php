@@ -120,21 +120,18 @@
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="bx bx-layout"></i>
-                                <span key="t-layouts">Keluhan</span>
+                                <span key="t-layouts">Master</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li>
-                                    <a href="{{ route('tasks.pending') }}" key="t-vertical">Pengajuan</a>
-
+                                    <a href="#" key="t-vertical">Meja</a>
                                 </li>
-
                                 <li>
-                                    <a href="{{ route('tasks.progress') }}" key="t-horizontal">Progress</a>
+                                    <a href="#" key="t-horizontal">Kategori</a>
 
                                 </li>
                                 <li>
-                                    <a href="{{ route('tasks.history') }}" key="t-horizontal">History</a>
-
+                                    <a href="#" key="t-horizontal">Produk</a>
                                 </li>
                             </ul>
                         </li>
@@ -145,23 +142,18 @@
 
 
                         <li>
-                            <a href="{{ url('technician') }}" class="waves-effect">
+                            <a href="#" class="waves-effect">
                                 <i class="mdi mdi-human-greeting"></i>
-                                <span key="mdi-human-greeting">Teknisi</span>
+                                <span key="mdi-human-greeting">Transaksi</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('tasks/schedule') }}" class="waves-effect">
+                            <a href="#" class="waves-effect">
                                 <i class="mdi mdi-calendar-clock"></i>
-                                <span key="mdi-calendar-clock">Jadwal</span>
+                                <span key="mdi-calendar-clock">Report</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ url('tasks/report') }}" class="waves-effect">
-                                <i class="mdi mdi-book-open-page-variant"></i>
-                                <span key="mdi-book-open-page-variant">Laporan</span>
-                            </a>
-                        </li>
+
 
 
 

@@ -57,44 +57,44 @@
                                 </a>
                             </div>
                             <div class="p-2">
-                                {{-- <form class="form-horizontal" action="#" method="POST"> --}}
-                                {{-- @csrf --}}
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username"
-                                        placeholder="Enter username" value="admin">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Password</label>
-                                    <div class="input-group auth-pass-inputgroup">
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Enter password" aria-label="Password"
-                                            aria-describedby="password-addon" value="password">
-                                        <button class="btn btn-light " type="button" id="password-addon"><i
-                                                class="mdi mdi-eye-outline"></i></button>
+                                <form class="form-horizontal" action="{{ url('/auth/verify') }}" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                            value="admin" placeholder="Enter username" value="admin">
                                     </div>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="remember-check">
-                                    <label class="form-check-label" for="remember-check">
-                                        Remember me
-                                    </label>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    @foreach ($errors->all() as $error)
-                                        <div class="alert alert-danger" role="alert">
-                                            {{ $error }}
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <div class="input-group auth-pass-inputgroup">
+                                            <input type="password" class="form-control" name="password"
+                                                placeholder="Enter password" aria-label="Password"
+                                                aria-describedby="password-addon" value="password">
+                                            <button class="btn btn-light " type="button" id="password-addon"><i
+                                                    class="mdi mdi-eye-outline"></i></button>
                                         </div>
-                                    @endforeach
-                                </div>
-                                <div class="mt-3 d-grid">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light"
-                                        type="submit">Log In</button>
-                                </div>
-                                <!-- <div class="mt-4 text-center">
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="remember-check">
+                                        <label class="form-check-label" for="remember-check">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        @foreach ($errors->all() as $error)
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $error }}
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="mt-3 d-grid">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light"
+                                            type="submit">Log In</button>
+                                    </div>
+                                    <!-- <div class="mt-4 text-center">
                                             <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock me-1"></i> Forgot your password?</a>
                                         </div> -->
-                                {{-- </form> --}}
+                                </form>
                             </div>
                         </div>
                     </div>
