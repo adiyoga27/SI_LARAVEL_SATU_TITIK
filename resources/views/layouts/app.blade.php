@@ -127,7 +127,7 @@
                                     <a href="#" key="t-vertical">Meja</a>
                                 </li>
                                 <li>
-                                    <a href="#" key="t-horizontal">Kategori</a>
+                                    <a href="{{url('category')}}" key="t-horizontal">Kategori</a>
 
                                 </li>
                                 <li>
