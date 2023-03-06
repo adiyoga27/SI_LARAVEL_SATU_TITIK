@@ -22,8 +22,9 @@ Route::post('/auth/verify', [AuthController::class, 'verify']);
 Route::post('/auth/logout', [AuthController::class, 'logout']);
 Route::resource('category', CategoryProductController::class);
 
-Route::get('/foo', function () {
-    Artisan::call('storage:link');
+Route::get('generate', function (){
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    echo 'ok';
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
