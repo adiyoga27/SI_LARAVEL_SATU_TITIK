@@ -7,12 +7,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Meja</h4>
+                        <h4 class="mb-sm-0 font-size-18">Data Produk</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Data</a></li>
-                                <li class="breadcrumb-item active">Data Meja</li>
+                                <li class="breadcrumb-item active">Data Produk</li>
                             </ol>
                         </div>
 
@@ -27,13 +27,17 @@
 
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addForm"><i
                                     class="mdi mdi-account-plus"></i>&nbsp Tambah
-                                Meja</button>
+                                Produk</button>
                             <hr>
                             <table id="data-table" class="table table-bordered dt-responsive  nowrap w-100 data-table">
                                 <thead>
                                     <tr>
+                                        <th>Image</th>
+                                        <th>Kategori</th>
                                         <th>Nama</th>
                                         <th>Deskripsi</th>
+                                        <th>Harga</th>
+                                        <th>Diskon</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -59,9 +63,20 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Form Tambah Kategori</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('dining.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         @csrf
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Kategori</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option>Pilih Kategori</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
@@ -72,6 +87,26 @@
                             <label for="example-text-input" class="col-md-2 col-form-label">Deskripsi</label>
                             <div class="col-md-10">
                                 <textarea class="form-control" name="description" id="description"> </textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Harga</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="price" id="price">
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Diskon</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="discount" id="discount">
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Gambar</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="file" name="image" id="image">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -94,8 +129,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -107,6 +142,17 @@
 
                     <div class="modal-body">
                         <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Kategori</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option>Pilih Kategori</option>
+                                    @foreach ($categories as $product)
+                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
                                 <input class="form-control" type="text" name="id" id="id" hidden>
@@ -117,6 +163,26 @@
                             <label for="example-text-input" class="col-md-2 col-form-label">Deskripsi</label>
                             <div class="col-md-10">
                                 <textarea class="form-control" name="description" id="description"> </textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Harga</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="price" id="price">
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Diskon</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="discount" id="discount">
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Gambar</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="file" name="image" id="image">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -164,14 +230,33 @@
             var table = $('#data-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('dining.index') }}",
+                ajax: "{{ route('product.index') }}",
                 columns: [{
+                        data: 'image',
+                        name: 'image',
+                        render: function(data, type, full, meta) {
+                            return "<img src=\"{{ URL::to('/storage') }}/" + data +
+                                "\" width=\"50\" class=\"img-thumbnail\" />";
+                        },
+                    }, {
+                        data: 'category',
+                        name: 'category'
+                    },
+                    {
                         data: 'name',
                         name: 'name'
                     },
                     {
                         data: 'description',
                         name: 'description'
+                    },
+                    {
+                        data: 'price',
+                        name: 'price'
+                    },
+                    {
+                        data: 'discount',
+                        name: 'discount'
                     },
                     {
                         data: 'is_active',
@@ -206,7 +291,7 @@
             $('#form-edit')[0].reset();
             $.ajax({
                 type: "GET",
-                url: "{{ url('dining') }}/" + id,
+                url: "{{ url('product') }}/" + id,
                 dataType: "JSON",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -217,6 +302,9 @@
                         modal.find('#id').val(response.data['id']);
                         modal.find('#name').val(response.data['name']);
                         modal.find('#description').val(response.data['description']);
+                        modal.find('#category_id').val(response.data['category_id']);
+                        modal.find('#price').val(response.data['price']);
+                        modal.find('#discount').val(response.data['discount']);
                         modal.find('#is_active').val(response.data['is_active']);
 
 
@@ -241,7 +329,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "{{ url('dining') }}/" + id,
+                url: "{{ url('product') }}/" + id,
                 data: formData,
                 processData: false,
                 contentType: false,

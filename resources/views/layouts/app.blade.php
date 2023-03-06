@@ -4,11 +4,9 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Sistem Pengajuan Keluhan Penerangan | Kabupaten Kelungkung</title>
+    <title>E-Menu Cafe Satu Titik Kopi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta
-        content="Sistem Informasi Pengaduan Penerangan Jalan Umum Berbasis Mobile Pada Dinas Perhubungan Kabupaten Klungkung"
-        name="description" />
+    <meta content="Sistem Informasi E-Menu Berbasis Mobile dan Web Pada Cafe Satu Titik Kopi" name="description" />
     <meta content="codingaja.com" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- App favicon -->
@@ -124,14 +122,14 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li>
-                                    <a href="#" key="t-vertical">Meja</a>
+                                    <a href="{{ url('dining') }}" key="t-vertical">Meja</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('category')}}" key="t-horizontal">Kategori</a>
+                                    <a href="{{ url('category') }}" key="t-horizontal">Kategori</a>
 
                                 </li>
                                 <li>
-                                    <a href="#" key="t-horizontal">Produk</a>
+                                    <a href="{{ url('product') }}" key="t-horizontal">Produk</a>
                                 </li>
                             </ul>
                         </li>

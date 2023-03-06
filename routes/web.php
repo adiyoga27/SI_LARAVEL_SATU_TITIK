@@ -3,6 +3,8 @@
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\CategoryProductController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\DiningController;
+use App\Http\Controllers\Web\ProductController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,8 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/auth/verify', [AuthController::class, 'verify']);
 Route::post('/auth/logout', [AuthController::class, 'logout']);
 Route::resource('category', CategoryProductController::class);
+Route::resource('dining', DiningController::class);
+Route::resource('product', ProductController::class);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
