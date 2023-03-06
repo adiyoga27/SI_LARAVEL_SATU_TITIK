@@ -22,11 +22,6 @@ Route::post('/auth/verify', [AuthController::class, 'verify']);
 Route::post('/auth/logout', [AuthController::class, 'logout']);
 Route::resource('category', CategoryProductController::class);
 
-Route::get('generate', function (){
-    \Illuminate\Support\Facades\Artisan::call('storage:link');
-    echo 'ok';
-});
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 });
