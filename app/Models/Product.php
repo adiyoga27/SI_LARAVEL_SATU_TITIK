@@ -19,6 +19,14 @@ class Product extends Model
         'is_active',
     ];
 
+    protected $casts = [
+        'product_id' => 'integer',
+        'category_id' => 'integer',
+        'name' => 'string',
+        'discount' => 'integer',
+        'price' => 'integer',
+        'is_active' => 'bool',
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class);
