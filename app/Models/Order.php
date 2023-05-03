@@ -41,5 +41,15 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 
+    public function diningTable()
+    {
+        return $this->hasOne(DiningTable::class, 'id', 'table_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
 
 }
