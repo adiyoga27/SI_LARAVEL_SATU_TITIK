@@ -14,5 +14,6 @@ class DiningTable extends Model
         'name',
         'description',
         'is_active',
+        'uuid'
     ];
 }

@@ -17,4 +17,9 @@ class OrderDetail extends Model
         'discount',
         'total_price',
     ];
+
+    public function product()
+    {
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }

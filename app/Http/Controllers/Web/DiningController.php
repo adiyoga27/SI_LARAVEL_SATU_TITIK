@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DiningTable;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-
+use Illuminate\Support\Str;
 class DiningController extends Controller
 {
     /**
@@ -56,6 +56,7 @@ class DiningController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'is_active' => $request->is_active ? true : false,
+                'uuid' => Str::uuid()->toString()
             ]);
             return redirect()->back()->with('success', 'Data berhasil ditambahkan');
         } catch (\Throwable $th) {

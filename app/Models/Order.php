@@ -11,7 +11,7 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = [
         'user_id',
-        'dining_table_id',
+        'table_id',
         'order_number',
         'customer_name',
         'customer_hp',
@@ -25,6 +25,16 @@ class Order extends Model
         'note',
         'uuid'
     ];
+
+    protected static function booted()
+    {
+        static::created(function ($model) {
+            $jml = $model->whereDate('created_at', date('Y-m-d'))->count();
+            $prefix = (date('Ymd') * 100000) + $jml + 1;
+            $model->order_number = 'INV-'.$prefix;
+            $model->save();
+        });
+    }
 
     public function details()
     {
