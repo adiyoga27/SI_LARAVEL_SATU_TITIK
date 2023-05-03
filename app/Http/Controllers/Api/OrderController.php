@@ -22,7 +22,12 @@ class OrderController extends Controller
         ]);
         try {
             $dinningTable = DiningTable::where('uuid', $request->table_uuid)->first();
-
+            if(!$dinningTable){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Meja yang anda scan tidak ditemukan '.$request->table_uuid,
+                ], 400);
+            }
             $orders = Order::where('table_id', $dinningTable->id)->where('status', 'pending')->first();
             if (!$orders) {
                 $order = Order::create([
