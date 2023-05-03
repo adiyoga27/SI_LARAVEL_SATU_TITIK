@@ -120,11 +120,19 @@ class OrderController extends Controller
     public function order(Request $request, $uuid)
     {
         $order = Order::where('uuid', $uuid)->first();
+        if($order){
+            return response()->json([
+                'status' => true,
+                'message' => 'Berikut Pesanan Anda',
+                'data' => new OrderResource($order)
+            ]);
+        }
+
         return response()->json([
-            'status' => true,
-            'message' => 'Berikut Pesanan Anda',
-            'data' => new OrderResource($order)
-        ]);
+            'status' => false,
+            'message' => 'Tidak Ada pesanan'
+        ], 400);
+      
     }
 
     public function calculate($order_id)
