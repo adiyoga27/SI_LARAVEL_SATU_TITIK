@@ -18,7 +18,7 @@ class OrderDetailResource extends JsonResource
             'product_id' => (integer) $this->product_id,
             'name' => $this->product->name,
             'price' =>(double)  $this->price,
-            'quantity' => $this->quantity,
+            'quantity' => (integer)$this->quantity,
             'total_price' => (double) $this->total_price
         ];
     }
