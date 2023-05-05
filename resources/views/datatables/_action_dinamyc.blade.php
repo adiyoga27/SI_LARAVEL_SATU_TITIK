@@ -33,6 +33,27 @@
         </div>
     @endif
 
+    @if (isset($checkout))
+        <div class="flex-item">
+            <a class="btn btn-success  btn-sm" title="Lihat" href="{{ $checkout }}"><i
+                    class="mdi mdi-cash-multiple"></i>
+                Checkout</a>
+        </div>
+    @endif
+
+    @if (isset($cancel))
+    <div class="flex-item">
+        <form action="{{ isset($cancel) ? $cancel : '/' }}" method="POST" data-confirm="{{ $confirm_message ?? '' }}"
+            style="margin-bottom: 5px" onsubmit="event.preventDefault(); return confirmDelete(this)">
+            @method('POST')
+            @csrf
+            <button type="submit" class="btn btn-danger btn-sm" title="Hapus Product"><i
+                    class="mdi mdi-close"></i>
+                Cancel</button>
+        </form>
+    </div>
+    @endif
+
     @if (isset($approve))
         <div class="flex-item">
             <a class="btn btn-success  btn-sm" title="Terima Pengajuan" data-id="{{ $model->id }}" id="approve"

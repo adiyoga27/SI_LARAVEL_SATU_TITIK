@@ -24,7 +24,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-
+                      
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addForm"><i
                                     class="mdi mdi-account-plus"></i>&nbsp Tambah
                                 Kategori</button>

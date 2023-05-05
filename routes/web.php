@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\CategoryProductController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\DiningController;
 use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\TransactionController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,10 @@ Route::resource('product', ProductController::class);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
+    Route::prefix('transaction')->group(function () {
+        Route::resource('/', TransactionController::class);
+        Route::get('/invoice/{uuid}', [TransactionController::class, 'invoice']);
+        Route::post('/cancel/{uuid}', [TransactionController::class, 'cancel']);
+        Route::post('/checkout/{uuid}', [TransactionController::class, 'checkout']);
+    });
 });

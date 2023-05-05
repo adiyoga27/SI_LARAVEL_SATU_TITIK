@@ -140,7 +140,7 @@
 
 
                         <li>
-                            <a href="#" class="waves-effect">
+                            <a href="{{url('transaction')}}" class="waves-effect">
                                 <i class="mdi mdi-human-greeting"></i>
                                 <span key="mdi-human-greeting">Transaksi</span>
                             </a>
