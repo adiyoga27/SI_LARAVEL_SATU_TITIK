@@ -7,6 +7,8 @@ use App\Models\DiningTable;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 class DiningController extends Controller
 {
     /**
@@ -25,6 +27,9 @@ class DiningController extends Controller
                         'confirm_message' =>  'Anda akan menghapus data "' . $data->name . '" ?',
                         'padding'         => '85px',
                     ]);
+                })
+                ->addColumn('qr', function($data){
+                    return base64_encode(QrCode::format('png')->size(100)->generate($data->uuid));
                 })
                 ->rawColumns(['action'])
                 ->make(true);
