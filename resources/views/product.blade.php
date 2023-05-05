@@ -98,9 +98,15 @@
                         </div>
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Diskon</label>
-                            <div class="col-md-10">
-                                <input class="form-control" type="text" name="discount" id="discount">
-
+                            <div class="col-md-5">
+                                {{-- <input class="form-control" type="text" name="discount" id="discount"> --}}
+                                <div class="input-group">
+                                    <input type="number" class="form-control" name="discount" id="discount" min="0.0" max="100.0" placeholder="Contoh : 15.0" aria-describedby="validationTooltipUsernamePrepend" required="">
+                                 
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="validationTooltipUsernamePrepend">%</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -175,8 +181,14 @@
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Diskon</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" name="discount" id="discount">
-
+                                {{-- <input class="form-control" type="text" name="discount" id="discount"> --}}
+                                <div class="input-group">
+                                    <input type="number" class="form-control" name="discount" id="discount" min="0.0" max="100.0" placeholder="Contoh : 15.0" aria-describedby="validationTooltipUsernamePrepend" required="">
+                                 
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="validationTooltipUsernamePrepend">%</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -305,7 +317,7 @@
                         modal.find('#category_id').val(response.data['category_id']);
                         modal.find('#price').val(response.data['price']);
                         modal.find('#discount').val(response.data['discount']);
-                        modal.find('#is_active').val(response.data['is_active']);
+                        modal.find('#is_active').value = response.data['is_active'];
 
 
                     } else {

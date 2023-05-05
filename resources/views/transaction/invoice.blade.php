@@ -84,6 +84,8 @@
 
                                                 <th style="width:10%">Qty</th>
                                                 <th  style="width:50%">Pesanan</th>
+                                                <th style="width:10%">Harga</th>
+
                                                 <th style="width:10%">Discount</th>
 
                                                 <th style="width:20%" class="text-end">Harga</th>
@@ -97,7 +99,9 @@
                                                 <td>{{$d->quantity}}</td>
 
                                                 <td>{{$d->product->name}}</td>
-                                                <td>{{$d->discount ?? "-"}}</td>
+                                                <td>{{number_format($d->price,'0',',','.')}}</td>
+
+                                                <td>{{$d->discount > 0 ? "(".$d->product->discount."%) / ".number_format($d->discount,'0',',','.') : "-"}}</td>
 
                                                 <td class="text-end">{{number_format($d->total_price,'0',',','.')}}</td>
                                             </tr>
@@ -105,21 +109,21 @@
                                         
                                             
                                             <tr>
-                                                <td colspan="4" class="text-end">Sub Total</td>
+                                                <td colspan="5" class="text-end">Sub Total</td>
                                                 <td class="text-end">{{number_format($order->total_price,'0',',','.')}}</td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="4" class="border-0 text-end">
+                                            {{-- <tr>
+                                                <td colspan="5" class="border-0 text-end">
                                                     <strong>Diskon</strong></td>
                                                 <td class="border-0 text-end">{{number_format($order->discount,'0',',','.')}}</td>
-                                            </tr>
+                                            </tr> --}}
                                             <tr>
-                                                <td colspan="4" class="border-0 text-end">
+                                                <td colspan="5" class="border-0 text-end">
                                                     <strong>Tax</strong></td>
                                                 <td class="border-0 text-end">{{number_format($order->tax,'0',',','.')}}</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" class="border-0 text-end">
+                                                <td colspan="5" class="border-0 text-end">
                                                     <strong>Total</strong></td>
                                                     <td class="border-0 text-end"><h4 class="m-0">Rp {{number_format($order->total_payment,'0',',','.')}}</h4></td>
                                             </tr>

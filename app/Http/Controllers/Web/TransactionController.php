@@ -107,9 +107,12 @@ class TransactionController extends Controller
         try {
             $order = OrderDetail::where('id', $cartId)->first();
 
+            $totalPrice =  $request->quantity * $order->product->price;
+            $discount = $totalPrice * ($order->product->discount / 100);
         tap($order->update([
             'quantity' => $request->quantity,
-            'total_price' => ($request->quantity * $order->price)
+            'discount' => $discount,
+            'total_price' => $totalPrice - $discount
          ]));
 
          $this->calculateTransaction($order->order_id);
@@ -131,15 +134,16 @@ class TransactionController extends Controller
     public function calculateTransaction($orderId)
     {
      
-            $amount = OrderDetail::where('order_id', $orderId)->sum('total_price');
+            $totalPrice = OrderDetail::where('order_id', $orderId)->sum('total_price');
+
             $discount = OrderDetail::where('order_id', $orderId)->sum('discount');
             $price = OrderDetail::where('order_id', $orderId)->sum('price');
     
             Order::where('id', $orderId)->update([
-                'total_price' => $amount,
+                'total_price' => $totalPrice,
                 'discount' => $discount,
                 'tax' => 0,
-                'total_payment' => $amount-$discount
+                'total_payment' => $totalPrice
             ]);
 
        

@@ -85,17 +85,23 @@ class OrderController extends Controller
             $check = OrderDetail::where('order_id' , $order->id)->where('product_id', $request->product_id)->first();
             if($check){
                 $qty = $request->quantity + $check->quantity; 
+                $totalPrice =   $qty * $product->price;
+                $discount = $totalPrice * ($product->discount / 100);
                 $check->update([
                     'quantity' => $qty,
-                    'total_price' => $qty * $product->price
+                    'discount' => $discount,
+                    'total_price' => $totalPrice
                 ]);
             }else{
+                $totalPrice =  $request->quantity * $product->price;
+                $discount = $totalPrice * ($product->discount / 100);
                 OrderDetail::create([
                     'order_id' => $order->id,
                     'product_id' => $request->product_id,
                     'quantity' => $request->quantity,
                     'price' => $product->price,
-                    'total_price' => $request->quantity * $product->price
+                    'discount' => $discount,
+                    'total_price' => $totalPrice-$discount
                 ]);
             }
            
