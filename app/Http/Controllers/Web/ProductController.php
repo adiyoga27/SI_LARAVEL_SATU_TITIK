@@ -120,6 +120,7 @@ class ProductController extends Controller
                 $product->update([
                     'image' => 'product' . "/" . $imageName,
                     'name' => $request->name,
+                    'category_id' => $request->category_id,
                     'description' => $request->description,
                     'price' => $request->price,
                     'discount' => $request->discount ?? NULL,
@@ -127,6 +128,8 @@ class ProductController extends Controller
                 ]);
             } else {
                 $product->update([
+                    'category_id' => $request->category_id,
+
                     'name' => $request->name,
                     'description' => $request->description,
                     'price' => $request->price,

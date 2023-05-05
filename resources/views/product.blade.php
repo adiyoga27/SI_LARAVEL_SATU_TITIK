@@ -152,8 +152,8 @@
                             <div class="col-md-10">
                                 <select class="form-control" name="category_id" id="category_id">
                                     <option>Pilih Kategori</option>
-                                    @foreach ($categories as $product)
-                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @foreach ($categories as $c)
+                                        <option value="{{ $c->id }}">{{ $c->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
