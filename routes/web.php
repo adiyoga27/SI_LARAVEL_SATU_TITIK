@@ -33,6 +33,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/', TransactionController::class);
         Route::get('/invoice/{uuid}', [TransactionController::class, 'invoice']);
         Route::post('/cancel/{uuid}', [TransactionController::class, 'cancel']);
+        Route::post('/rollback/{uuid}', [TransactionController::class, 'rollback']);
         Route::post('/checkout/{uuid}', [TransactionController::class, 'checkout']);
+        Route::get('/order/{id}', [TransactionController::class, 'detailCart']);
+        Route::put('/cart/{id}', [TransactionController::class, 'submitCart']);
+        Route::get('/cart-delete/{id}', [TransactionController::class, 'deleteCart']);
     });
 });

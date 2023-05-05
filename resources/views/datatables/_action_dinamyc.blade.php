@@ -47,9 +47,22 @@
             style="margin-bottom: 5px" onsubmit="event.preventDefault(); return confirmDelete(this)">
             @method('POST')
             @csrf
-            <button type="submit" class="btn btn-danger btn-sm" title="Hapus Product"><i
+            <button type="submit" class="btn btn-danger btn-sm" title="Cancel Transaksi"><i
                     class="mdi mdi-close"></i>
                 Cancel</button>
+        </form>
+    </div>
+    @endif
+
+    @if (isset($rollback))
+    <div class="flex-item">
+        <form action="{{ isset($rollback) ? $rollback : '/' }}" method="POST" data-confirm="Invoice {{$model->order_number}} akan dikembalikan ke belum terbayarkan ?"
+            style="margin-bottom: 5px" onsubmit="event.preventDefault(); return confirmDelete(this)">
+            @method('POST')
+            @csrf
+            <button type="submit" class="btn btn-danger btn-sm" title="Rollback Transaksi"><i
+                    class="mdi mdi-backup-restore"></i>
+                Rollback</button>
         </form>
     </div>
     @endif
