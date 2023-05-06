@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\CategoryProductController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\DiningController;
 use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\ReportController;
 use App\Http\Controllers\Web\TransactionController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +39,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/order/{id}', [TransactionController::class, 'detailCart']);
         Route::put('/cart/{id}', [TransactionController::class, 'submitCart']);
         Route::get('/cart-delete/{id}', [TransactionController::class, 'deleteCart']);
+    });
+
+    Route::prefix('report')->group(function () {
+        Route::get('/', [ReportController::class, 'index']);
+        Route::post('/export-transaction',[ReportController::class, 'exportTransaction']);
     });
 });

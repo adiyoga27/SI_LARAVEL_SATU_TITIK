@@ -62,7 +62,8 @@ class TransactionController extends Controller
            Order::where('uuid', $uuid)->update([
                 'status' => 'pending',
                 'payment_number' => NULL,
-                'note' => NULL 
+                'note' => NULL,
+                'paid_at' => NULL
            ]);
             return redirect()->back()->with('success', 'Invoice berhasil dikembalikan');
         } catch (\Throwable $th) {
@@ -80,6 +81,7 @@ class TransactionController extends Controller
                  'payment_number' => $request->payment_number,
                  'note' => $request->note,
                  'status' => 'paid',
+                 'paid_at' => now()
             ]);
              return redirect()->back()->with('success', 'Invoice berhasil dibayarkan');
          } catch (\Throwable $th) {
