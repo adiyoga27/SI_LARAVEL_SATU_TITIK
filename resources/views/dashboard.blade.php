@@ -129,7 +129,7 @@
             </div>
             <!-- end page title -->
             <!-- end row -->
-            <div style="width:50%">
+            <div style="width:80%">
                 <div class="card">
                     <div class="card-body">
                         <canvas id="lineChart"></canvas>
@@ -146,4 +146,14 @@
 
     <!-- Saas dashboard init -->
     <script src="{{ url('assets') }}/js/pages/saas-dashboard.init.js"></script>
+    <script>
+        var ctxL = document.getElementById("lineChart").getContext('2d');
+        var myLineChart = new Chart(ctxL, {
+        type: 'line',
+        data: {!! json_encode($charts) !!},
+        options: {
+            responsive: true
+        }
+        });
+        </script>
 @endsection
