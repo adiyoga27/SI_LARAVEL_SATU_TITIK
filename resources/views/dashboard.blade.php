@@ -60,7 +60,7 @@
                                         <h5 class="font-size-14 mb-0">Tamu Hari ini</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class=" ms-1 text-success"></i></h4>
+                                        <h4>{{$attendance}} Orang <i class=" ms-1 text-success"></i></h4>
 
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                         <h5 class="font-size-14 mb-0">Trx Belum Terbayar</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class=" ms-1 text-success"></i></h4>
+                                        <h4>{{$pending}} INV <i class=" ms-1 text-success"></i></h4>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                         <h5 class="font-size-14 mb-0">Trx Hari ini</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class="ms-1 text-success"></i></h4>
+                                        <h4>{{$paid}} INV <i class="ms-1 text-success"></i></h4>
                                     </div>
                                 </div>
                             </div>

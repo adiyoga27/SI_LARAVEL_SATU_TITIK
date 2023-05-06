@@ -11,7 +11,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-     
+        $attendance = Order::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
+        $pending = Order::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('status', 'pending')->count();
+        $paid = Order::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('status', 'paid')->count();
         for ($i = 1; $i <= 12; $i++) {
             $approve[] = Order::whereMonth('paid_at', $i)->whereYear('paid_at', date('Y'))->where('status', 'paid')->sum('total_payment');
             // $reject[] = Task::whereMonth('updated_at', $i)->whereYear('updated_at', date('Y'))->where('status', 'reject')->count();
@@ -38,6 +40,6 @@ class DashboardController extends Controller
             ]
         ];
 
-        return view('dashboard', compact(['charts']));
+        return view('dashboard', compact(['charts', 'attendance', 'pending', 'paid']));
     }
 }
