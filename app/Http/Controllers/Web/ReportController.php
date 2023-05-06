@@ -16,8 +16,8 @@ class ReportController extends Controller
 
     public function exportTransaction(Request $request)
     {
-        $startAt= $request->startAt;
-        $endAt = $request->endAt;
+        $startAt= $request->start_at;
+        $endAt = $request->end_at;
         return Excel::download(new TransactionExport($startAt, $endAt), 'Transaction-'.now()->format('dmY').'.xlsx');
 
     }

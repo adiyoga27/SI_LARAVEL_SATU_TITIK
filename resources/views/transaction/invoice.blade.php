@@ -94,8 +94,14 @@
                                         <tbody>
                                             @foreach ($order->details as $d)
                                             <tr>
-                                                <td><a class="btn btn-sm btn-secondary" data-id="{{ $d->id }}" id="edit"
-                                                    data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="mdi mdi-pencil"></i></a> </td>
+                                                <td>
+                                                    @if ($order->status  == 'pending')
+                                                    <a class="btn btn-sm btn-secondary" data-id="{{ $d->id }}" id="edit"
+                                                        data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="mdi mdi-pencil"></i></a>
+                                                    
+                                                    @endif
+                                                 
+                                                </td>
                                                 <td>{{$d->quantity}}</td>
 
                                                 <td>{{$d->product->name}}</td>
