@@ -82,6 +82,7 @@
                                             <tr>
                                                 <th style="width:5%"></th>
 
+                                                <th style="width:10%">Status</th>
                                                 <th style="width:10%">Qty</th>
                                                 <th  style="width:50%">Pesanan</th>
                                                 <th style="width:10%">Harga</th>
@@ -94,8 +95,27 @@
                                         <tbody>
                                             @foreach ($order->details as $d)
                                             <tr>
-                                                <td><a class="btn btn-sm btn-secondary" data-id="{{ $d->id }}" id="edit"
+                                                @if (Auth::user()->role == 'chief')
+                                                    <td><a class="btn btn-sm btn-secondary" data-id="{{ $d->id }}" id="edit"
                                                     data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="mdi mdi-pencil"></i></a> </td>
+                                                @else
+                                                        <td></td>
+                                                @endif
+                                                <td>
+                                                    @switch($d->status)
+                                                        @case('pending')
+                                                            Menunggu
+                                                            @break
+                                                        @case('proses')
+                                                            Sedang Di Proses
+                                                            @break
+                                                            @case('finish')
+                                                            Sudah Di Antarkan
+                                                            @break
+                                                        @default
+                                                    @endswitch
+                                                    {{$d->status}}</td>
+                                              
                                                 <td>{{$d->quantity}}</td>
 
                                                 <td>{{$d->product->name}}</td>

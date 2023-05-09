@@ -54,6 +54,32 @@
     </div>
     @endif
 
+    @if (isset($proses))
+    <div class="flex-item">
+        <form action="{{ isset($proses) ? $proses : '/' }}" method="POST" data-confirm="Apakah anda akan proses pesanan ini?"
+            style="margin-bottom: 5px" onsubmit="event.preventDefault(); return confirmDelete(this)">
+            @method('POST')
+            @csrf
+            <button type="submit" class="btn btn-danger btn-sm" title="Cancel"><i
+                    class="mdi mdi-checkbox-marked-outline"></i>
+                Proses</button>
+        </form>
+    </div>
+    @endif
+
+    @if (isset($serve))
+    <div class="flex-item">
+        <form action="{{ isset($serve) ? $serve : '/' }}" method="POST" data-confirm="Apakah anda akan antarkan pesanan ini?"
+            style="margin-bottom: 5px" onsubmit="event.preventDefault(); return confirmDelete(this)">
+            @method('POST')
+            @csrf
+            <button type="submit" class="btn btn-success btn-sm" title="Cancel"><i
+                    class="mdi mdi-cube-send"></i>
+                Antarkan</button>
+        </form>
+    </div>
+    @endif
+
     @if (isset($rollback))
     <div class="flex-item">
         <form action="{{ isset($rollback) ? $rollback : '/' }}" method="POST" data-confirm="Invoice {{$model->order_number}} akan dikembalikan ke belum terbayarkan ?"

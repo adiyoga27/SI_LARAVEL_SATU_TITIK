@@ -5,7 +5,9 @@ use App\Http\Controllers\Web\CategoryProductController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\DiningController;
 use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\QueueController;
 use App\Http\Controllers\Web\TransactionController;
+use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -39,4 +41,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/cart/{id}', [TransactionController::class, 'submitCart']);
         Route::get('/cart-delete/{id}', [TransactionController::class, 'deleteCart']);
     });
+
+    Route::resource('user', UserController::class);
+
+    Route::get('/queue',[QueueController::class, 'index']);
+    Route::post('/queue/proses/{id}',[QueueController::class, 'proses']);
+    Route::post('/queue/serve/{id}',[QueueController::class, 'serve']);
+
 });

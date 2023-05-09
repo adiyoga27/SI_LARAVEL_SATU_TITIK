@@ -115,36 +115,65 @@
 
                         </li>
 
+                        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'chief')
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="bx bx-layout"></i>
-                                <span key="t-layouts">Master</span>
+                                <span key="t-layouts">
+                                    @if (Auth::user()->role == 'chief')
+                                    Data Menu
+                                    @else
+                                    Master
+                                    @endif
+                                    </span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li>
-                                    <a href="{{ url('dining') }}" key="t-vertical">Meja</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('category') }}" key="t-horizontal">Kategori</a>
+                              
+                             
+                                @if (Auth::user()->role == 'admin')
+                                    <li>
+                                        <a href="{{ url('dining') }}" key="t-vertical">Meja</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('user') }}" key="t-horizontal">User</a>
+                                    </li>
+                                @endif
 
-                                </li>
-                                <li>
-                                    <a href="{{ url('product') }}" key="t-horizontal">Produk</a>
-                                </li>
+                                @if (Auth::user()->role == 'chief')
+                                    <li>
+                                        <a href="{{ url('category') }}" key="t-horizontal">Kategori</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('product') }}" key="t-horizontal">Menu</a>
+                                    </li>
+                                @endif
+
                             </ul>
                         </li>
+                        @endif
 
 
 
 
 
-
-                        <li>
-                            <a href="{{url('transaction')}}" class="waves-effect">
-                                <i class="mdi mdi-human-greeting"></i>
-                                <span key="mdi-human-greeting">Transaksi</span>
-                            </a>
-                        </li>
+                        @if (Auth::user()->role == 'cashier')
+                            <li>
+                                <a href="{{url('transaction')}}" class="waves-effect">
+                                    <i class="mdi mdi-human-greeting"></i>
+                                    <span key="mdi-human-greeting">Transaksi</span>
+                                </a>
+                            </li>
+                        @endif
+                    
+                        @if (Auth::user()->role == 'chief')
+                            <li>
+                                <a href="{{url('queue')}}" class="waves-effect">
+                                    <i class="mdi mdi-human-greeting"></i>
+                                    <span key="mdi-human-greeting">Data Pesanan</span>
+                                </a>
+                            </li>
+                        @endif
                         <li>
                             <a href="#" class="waves-effect">
                                 <i class="mdi mdi-calendar-clock"></i>
