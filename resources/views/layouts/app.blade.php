@@ -175,7 +175,7 @@
                             </li>
                         @endif
                         <li>
-                            <a href="#" class="waves-effect">
+                            <a href="{{url('report')}}" class="waves-effect">
                                 <i class="mdi mdi-calendar-clock"></i>
                                 <span key="mdi-calendar-clock">Report</span>
                             </a>

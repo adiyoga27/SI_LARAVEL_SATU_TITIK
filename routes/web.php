@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\DiningController;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\QueueController;
+use App\Http\Controllers\Web\ReportController;
 use App\Http\Controllers\Web\TransactionController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Artisan;
@@ -48,4 +49,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/queue/proses/{id}',[QueueController::class, 'proses']);
     Route::post('/queue/serve/{id}',[QueueController::class, 'serve']);
 
+    Route::prefix('report')->group(function () {
+        Route::get('/', [ReportController::class, 'index']);
+        Route::post('/export-transaction',[ReportController::class, 'exportTransaction']);
+    });
 });

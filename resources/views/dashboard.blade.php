@@ -60,7 +60,7 @@
                                         <h5 class="font-size-14 mb-0">Tamu Hari ini</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class=" ms-1 text-success"></i></h4>
+                                        <h4>{{$attendance}} Orang <i class=" ms-1 text-success"></i></h4>
 
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                         <h5 class="font-size-14 mb-0">Trx Belum Terbayar</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class=" ms-1 text-success"></i></h4>
+                                        <h4>{{$pending}} INV <i class=" ms-1 text-success"></i></h4>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                         <h5 class="font-size-14 mb-0">Trx Hari ini</h5>
                                     </div>
                                     <div class="text-muted mt-4">
-                                        <h4>0 Tasks <i class="ms-1 text-success"></i></h4>
+                                        <h4>{{$paid}} INV <i class="ms-1 text-success"></i></h4>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
             </div>
             <!-- end page title -->
             <!-- end row -->
-            <div style="width:50%">
+            <div style="width:80%">
                 <div class="card">
                     <div class="card-body">
                         <canvas id="lineChart"></canvas>
@@ -146,4 +146,14 @@
 
     <!-- Saas dashboard init -->
     <script src="{{ url('assets') }}/js/pages/saas-dashboard.init.js"></script>
+    <script>
+        var ctxL = document.getElementById("lineChart").getContext('2d');
+        var myLineChart = new Chart(ctxL, {
+        type: 'line',
+        data: {!! json_encode($charts) !!},
+        options: {
+            responsive: true
+        }
+        });
+        </script>
 @endsection
