@@ -27,7 +27,7 @@
                       
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addForm"><i
                                     class="mdi mdi-account-plus"></i>&nbsp Tambah
-                                Kategori</button>
+                                User</button>
                             <hr>
                             <table id="data-table" class="table table-bordered dt-responsive  nowrap w-100 data-table">
                                 <thead>
@@ -67,25 +67,25 @@
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" name="name" id="name">
+                                <input class="form-control" type="text" name="name" id="name" placeholder="Masukkan nama user ...">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Username</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" name="username" id="username">
+                                <input class="form-control" type="text" name="username" id="username" placeholder="Masukkan username user ...">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">HP</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" name="hp" id="hp">
+                                <input class="form-control" type="text" name="hp" id="hp" placeholder="Masukkan nomor handphone user ...">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="example-text-input" class="col-md-2 col-form-label">Email</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" name="email" id="email">
+                                <input class="form-control" type="text" name="email" id="email" placeholder="Masukkan email user ...">
                             </div>
                         </div>
                         <div class="mb-3 row">
