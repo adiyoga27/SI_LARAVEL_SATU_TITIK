@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\AdditionalCostController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\CategoryProductController;
 use App\Http\Controllers\Web\DashboardController;
@@ -44,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::resource('user', UserController::class);
+    Route::resource('additional-cost', AdditionalCostController::class);
 
     Route::get('/queue',[QueueController::class, 'index']);
     Route::post('/queue/proses/{id}',[QueueController::class, 'proses']);

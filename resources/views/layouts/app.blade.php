@@ -137,6 +137,9 @@
                                     <li>
                                         <a href="{{ url('user') }}" key="t-horizontal">User</a>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('additional-cost') }}" key="t-horizontal">Biaya</a>
+                                    </li>
                                 @endif
 
                                 @if (Auth::user()->role == 'chief')

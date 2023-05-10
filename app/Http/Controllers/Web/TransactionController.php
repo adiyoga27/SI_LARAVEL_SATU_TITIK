@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdditionalCost;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
@@ -37,8 +38,9 @@ class TransactionController extends Controller
     }
     public function invoice(Request $request, $uuid)
     {
+        $additionalCost = AdditionalCost::all();
         $order = Order::where('uuid', $uuid)->first();
-        return view('transaction.invoice', compact('order'));
+        return view('transaction.invoice', compact('order', 'additionalCost'));
     }
     public function cancel(Request $request, $uuid)
     {
@@ -75,13 +77,17 @@ class TransactionController extends Controller
     public function checkout(Request $request, $uuid)
     {
         try {
-            Order::where('uuid', $uuid)->update([
+            $order =Order::where('uuid', $uuid)->first();
+            $order->update([
                 'user_id' => $request->user()->id,
                  'payment_method' => $request->payment_method,
                  'payment_number' => $request->payment_number,
                  'note' => $request->note,
                  'status' => 'paid',
-                 'paid_at' => now()
+                 'tax' => $request->tax,
+                 'total_payment' => $order->tax + $order->total_price,
+                 'paid_at' => now(),
+                 'pay' => $request->pay
             ]);
              return redirect()->back()->with('success', 'Invoice berhasil dibayarkan');
          } catch (\Throwable $th) {
