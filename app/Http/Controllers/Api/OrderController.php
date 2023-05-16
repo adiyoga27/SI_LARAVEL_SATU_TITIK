@@ -172,4 +172,24 @@ class OrderController extends Controller
 
         return $totalTrx;
     }
+
+    public function checkout(Request $request, $uuid)
+    {
+        try {
+            Order::where('uuid', $uuid)->update([
+                'status' => 'progress'
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Pesanan anda sedang di proses'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Gagal memesan !'
+            ]);
+        }
+      
+    }
 }

@@ -31,5 +31,6 @@ Route::post('login', [AuthController::class, 'login']);
     Route::post('reservasi' , [OrderController::class, 'reservasi']);
     Route::post('add-cart' , [OrderController::class, 'addCart']);
     Route::get('order/{uuid}' , [OrderController::class, 'order']);
+    Route::post('checkout/{uuid}' , [OrderController::class, 'checkout']);
 // });
 
