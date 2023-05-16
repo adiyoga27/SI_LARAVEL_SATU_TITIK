@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
+
+
+
     public function product(Request $request, $category_id)
     {
         $products = Product::where('category_id', $category_id)->get();
