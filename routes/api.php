@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('registration', [AuthController::class, 'registration']);
 Route::post('login', [AuthController::class, 'login']);
 
-Route::middleware(['auth:sanctum'])->group(function () {
+// Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('book-table' , [OrderController::class, 'bookTable']);
     Route::get('category' , [ProductController::class, 'category']);
     Route::get('product' , [ProductController::class, 'product']);
@@ -31,5 +31,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('reservasi' , [OrderController::class, 'reservasi']);
     Route::post('add-cart' , [OrderController::class, 'addCart']);
     Route::get('order/{uuid}' , [OrderController::class, 'order']);
-});
+// });
 
