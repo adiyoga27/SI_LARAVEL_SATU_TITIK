@@ -13,6 +13,26 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
+    public function bookTable(Request $request)
+    {
+        $dinningTable = DiningTable::all();
+        foreach ($dinningTable as $dt) {
+            $order = Order::where('table_id', $dt['id'])->where('status', 'pending')->count();
+
+            $tables[] = array([
+                'name' => $dt['name'],
+                'description' => $dt['description'],
+                'uuid' => $dt['uuid'],
+                'is_active' => $order > 0 ? FALSE : TRUE,
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'success',
+            'data' => $tables
+        ]);
+    }
     public function reservasi(Request $request)
     {
         $payload = $request->validate([
