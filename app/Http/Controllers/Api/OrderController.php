@@ -150,7 +150,7 @@ class OrderController extends Controller
 
     public function order(Request $request, $uuid)
     {
-        $order = Order::where('uuid', $uuid)->where('status', 'pending')->first();
+        $order = Order::where('uuid', $uuid)->where('status', 'pending')->orWhere('status', 'progress')->first();
         if($order){
             return response()->json([
                 'status' => true,
