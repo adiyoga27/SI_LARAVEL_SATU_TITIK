@@ -22,7 +22,7 @@ class OrderController extends Controller
     {
         $dinningTable = DiningTable::all();
         foreach ($dinningTable as $dt) {
-            $order = Order::where('table_id', $dt['id'])->where('status', 'pending')->count();
+            $order = Order::where('table_id', $dt['id'])->where(fn($q) => $q->where('status', 'pending')->orWhere('status', 'progress'))->count();
 
             $tables[] = array(
                 'name' => $dt['name'],
