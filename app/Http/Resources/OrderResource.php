@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,7 +30,8 @@ class OrderResource extends JsonResource
             'payment_number' => $this->payment_number,
             'note' => $this->note,
             'uuid'=>$this->uuid,
-            'cart' =>  OrderDetailResource::collection($this->details)
+            'cart' =>  OrderDetailResource::collection($this->details),
+            'isAlreadyOrder' => OrderDetail::where('order_id', $request->id)->where('status', 'pending')->exists() ? true : false,
         ];
     }
 }
