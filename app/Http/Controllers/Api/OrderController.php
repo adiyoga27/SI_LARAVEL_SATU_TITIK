@@ -176,10 +176,13 @@ class OrderController extends Controller
     public function checkout(Request $request, $uuid)
     {
         try {
-            Order::where('uuid', $uuid)->update([
-                'status' => 'progress'
-            ]);
-
+            // Order::where('uuid', $uuid)->update([
+            //     'status' => 'progress'
+            // ]);
+              $order =  Order::where('uuid', $uuid)->first();
+                OrderDetail::where('order_id', $order->id)->where('status', 'pending')->update([
+                    'status', 'waiting'
+                ]);
             return response()->json([
                 'status' => true,
                 'message' => 'Pesanan anda sedang di proses'

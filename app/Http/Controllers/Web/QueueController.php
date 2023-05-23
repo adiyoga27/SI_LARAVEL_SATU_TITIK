@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\OrderDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -12,11 +13,11 @@ class QueueController extends Controller
     public function index(Request $request)
     {
 
+        $pending = OrderDetail::where('status', 'waiting')->count();
         $proses = OrderDetail::where('status', 'proses')->count();
-        $pending = OrderDetail::where('status', 'pending')->count();
         $finish = OrderDetail::where('status', 'finish')->count();
         if ($request->ajax()) {
-            $data = OrderDetail::orderBy('status', 'ASC');
+            $data = OrderDetail::orderBy('status', 'ASC')->where('status', '<>', 'pending')->where('created_at', '>=',Carbon::now()->format('Y-m-d'));
             return DataTables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     return view('datatables._action_dinamyc', [

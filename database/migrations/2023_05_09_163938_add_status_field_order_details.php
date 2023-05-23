@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('order_details', function (Blueprint $table) {
-            $table->enum('status', ['pending', 'proses', 'finish'])->after('order_id');
+            $table->enum('status', ['pending','waiting', 'proses', 'finish'])->after('order_id');
         });
     }
 
