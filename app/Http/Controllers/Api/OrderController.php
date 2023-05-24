@@ -180,8 +180,7 @@ class OrderController extends Controller
             //     'status' => 'progress'
             // ]);
               $order =  Order::where('uuid', $uuid)->first();
-                $orderDetail = OrderDetail::where('order_id', $order->id)->where('status', 'pending')->get();
-                $orderDetail->update([
+                $orderDetail = OrderDetail::where('order_id', $order->id)->where('status', 'pending')->update([
                     'status' => 'waiting'
                 ]);
             return response()->json([
