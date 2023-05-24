@@ -15,6 +15,7 @@ class OrderDetailResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => (integer) $this->id,
             'product_id' => (integer) $this->product_id,
             'name' => $this->product->name,
             'status' => $this->status,
