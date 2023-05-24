@@ -162,7 +162,7 @@ class OrderController extends Controller
         return response()->json([
             'status' => false,
             'message' => 'Tidak Ada pesanan'
-        ], 400);
+        ], 200);
       
     }
 
