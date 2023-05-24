@@ -31,7 +31,8 @@ class OrderResource extends JsonResource
             'note' => $this->note,
             'uuid'=>$this->uuid,
             'cart' =>  OrderDetailResource::collection($this->details),
-            'isAlreadyOrder' => OrderDetail::where('order_id', $request->id)->where('status', 'pending')->exists() ? true : false,
+            'isAlreadyOrder' => (bool) OrderDetail::where('order_id', $request->id)->where('status', 'pending')->exists() ? 1 : 0,
+
         ];
     }
 }
