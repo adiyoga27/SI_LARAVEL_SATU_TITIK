@@ -22,7 +22,7 @@ class QueueController extends Controller
                 ->addColumn('action', function ($data) {
                     return view('datatables._action_dinamyc', [
                         'model'           => $data,
-                        'proses'          => $data->status == 'pending' ? url('queue/proses/'.$data->id) : NULL,
+                        'proses'          => $data->status == 'waiting' ? url('queue/proses/'.$data->id) : NULL,
                         'serve'          => $data->status == 'proses'   ? url('queue/serve/'.$data->id) : NULL,
                         'padding'         => '85px',
                     ]);
