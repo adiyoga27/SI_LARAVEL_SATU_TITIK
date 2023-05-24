@@ -180,8 +180,9 @@ class OrderController extends Controller
             //     'status' => 'progress'
             // ]);
               $order =  Order::where('uuid', $uuid)->first();
-                OrderDetail::where('order_id', $order->id)->where('status', 'pending')->update([
-                    'status', 'waiting'
+                $orderDetail = OrderDetail::where('order_id', $order->id)->where('status', 'pending')->get();
+                $orderDetail->update([
+                    'status' => 'waiting'
                 ]);
             return response()->json([
                 'status' => true,
@@ -194,5 +195,21 @@ class OrderController extends Controller
             ]);
         }
       
+    }
+
+    public function deleteCart(Request $request, $id)
+    {
+        try {
+                OrderDetail::where('id', $id)->where('status', 'pending')->delete();
+            return response()->json([
+                'status' => true,
+                'message' => 'Pesanan anda telah dihapus!!'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Gagal menghapus pesan !'
+            ]);
+        }
     }
 }

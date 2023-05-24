@@ -30,6 +30,7 @@ Route::post('login', [AuthController::class, 'login']);
     Route::get('product/{category_id}' , [ProductController::class, 'productByCategory']);
     Route::post('reservasi' , [OrderController::class, 'reservasi']);
     Route::post('add-cart' , [OrderController::class, 'addCart']);
+    Route::delete('delete-cart/{id}' , [OrderController::class, 'deleteCart']);
     Route::get('order/{uuid}' , [OrderController::class, 'order']);
     Route::post('checkout/{uuid}' , [OrderController::class, 'checkout']);
 // });
