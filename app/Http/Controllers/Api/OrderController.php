@@ -191,7 +191,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => true,
-                'message' => 'Gagal memesan !'
+                'message' => 'Gagal memesan !'.$th->getMessage()
             ]);
         }
       
