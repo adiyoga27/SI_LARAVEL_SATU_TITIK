@@ -199,12 +199,14 @@ class OrderController extends Controller
     public function deleteCart(Request $request, $id)
     {
         try {
-                OrderDetail::where('id', $id)->where('status', 'pending')->delete();
-                Order::where('id', $id)->update([
-                    'total_price' => $this->calculate($id),
+            $order = OrderDetail::where('id', $id)->first();
+            $order_id = $order->order_id;
+            OrderDetail::where('id', $id)->where('status', 'pending')->delete();
+                Order::where('id', $order_id)->update([
+                    'total_price' => $this->calculate($order_id),
                     'tax' => 0,
                     'discount' => 0,
-                    'total_payment' => $this->calculate($id)
+                    'total_payment' => $this->calculate($order_id)
                 ]);
             return response()->json([
                 'status' => true,
