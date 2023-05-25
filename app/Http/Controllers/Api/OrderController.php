@@ -200,6 +200,12 @@ class OrderController extends Controller
     {
         try {
                 OrderDetail::where('id', $id)->where('status', 'pending')->delete();
+                Order::where('id', $id)->update([
+                    'total_price' => $this->calculate($id),
+                    'tax' => 0,
+                    'discount' => 0,
+                    'total_payment' => $this->calculate($id)
+                ]);
             return response()->json([
                 'status' => true,
                 'message' => 'Pesanan anda telah dihapus!!'
