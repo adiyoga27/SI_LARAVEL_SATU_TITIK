@@ -15,7 +15,7 @@ class TransactionExport implements FromView
     public function view(): View
     {
         return view('report.export-transaction', [
-            'invoices' => Order::whereBetween('paid_at', [$this->startAt, $this->endAt])->get(),
+            'invoices' => Order::whereBetween('paid_at', [$this->startAt, $this->endAt])->where('status', 'paid')->get(),
             'startAt' => $this->startAt,
             'endAt' => $this->endAt
         ]);

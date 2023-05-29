@@ -5,8 +5,8 @@
         </tr>
     <tr>
         <th>Invoice</th>
-        <th>Nama Customer</th>
-        <th>Hp</th>
+        <th>Meja</th>
+        {{-- <th>Hp</th> --}}
         <th>Total</th>
         <th>Diskon</th>
         <th>Tax</th>
@@ -22,8 +22,8 @@
     @foreach($invoices as $invoice)
         <tr>
             <td>{{ $invoice->order_number }}</td>
-            <td>{{ $invoice->customer_name }}</td>
-            <td>{{ $invoice->customer_hp }}</td>
+            <td>{{ $invoice->diningTable->name }}</td>
+            {{-- <td>{{ $invoice->customer_hp }}</td> --}}
             <td>{{ $invoice->total_price }}</td>
             <td>{{ $invoice->discount }}</td>
             <td>{{ $invoice->tax }}</td>

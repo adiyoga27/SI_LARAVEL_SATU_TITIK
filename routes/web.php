@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('report')->group(function () {
         Route::get('/', [ReportController::class, 'index']);
+        Route::post('/', [ReportController::class, 'index']);
         Route::post('/export-transaction',[ReportController::class, 'exportTransaction']);
     });
 });
