@@ -336,6 +336,7 @@
                         modal.find('#description').val(response.data['description']);
                         modal.find('#category_id').val(response.data['category_id']);
                         modal.find('#price').val(response.data['price']);
+                        modal.find('#hpp').val(response.data['hpp']);
                         modal.find('#discount').val(response.data['discount']);
                         modal.find('#is_active').value = response.data['is_active'];
 
