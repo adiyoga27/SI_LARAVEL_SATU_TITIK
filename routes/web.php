@@ -48,6 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('additional-cost', AdditionalCostController::class);
 
     Route::get('/queue',[QueueController::class, 'index']);
+    Route::get('/queue/status',[QueueController::class, 'queueStatus']);
     Route::post('/queue/proses/{id}',[QueueController::class, 'proses']);
     Route::post('/queue/serve/{id}',[QueueController::class, 'serve']);
 
@@ -55,5 +56,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [ReportController::class, 'index']);
         Route::post('/', [ReportController::class, 'index']);
         Route::post('/export-transaction',[ReportController::class, 'exportTransaction']);
+        Route::get('/laba', [ReportController::class, 'laba']);
+        Route::post('/laba', [ReportController::class, 'laba']);
+        
     });
 });

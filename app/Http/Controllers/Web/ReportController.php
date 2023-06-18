@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Web;
 use App\Exports\TransactionExport;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
 
@@ -31,6 +34,45 @@ class ReportController extends Controller
                 ->make(true);
         }
         return view('report.index');
+    }
+
+    public function laba(Request $request)
+    {
+
+        $startAt= $request->start_at;
+        if(isset($startAt)){
+            $date = Carbon::createFromFormat('Y-m-d', $startAt);
+            $dateReport = $date->locale('id')->format('d F Y');
+            $orders = OrderDetail::whereDate('created_at', $startAt)->where('status', 'finish')->groupBy('product_id')->get([
+                DB::raw('product_id'),
+                DB::raw('SUM(total_price) AS benefit'),
+                DB::raw('SUM(quantity) AS quantity'),
+            ]);
+                if($orders){
+                    $data = [];
+                    foreach ($orders as $order) {
+                        $data[] = array(
+                            'product_id' => $order->product_id,
+                            'name' => $order->product->name,
+                            'benefit' => $order->benefit,
+                            'cost' => $order->product->hpp,
+                            'quantity' => $order->quantity,
+            
+                        ) ;
+                    }
+                    if(count($data) == 0){
+                        return redirect()->back()->withErrors('Data Yang Kamu Cari Tidak Ada');
+
+                    }
+
+                    return view('report.laba', compact('data', 'dateReport' ,'startAt'));
+                }
+
+           
+        }
+        return view('report.laba');
+
+      
     }
 
     public function exportTransaction(Request $request)

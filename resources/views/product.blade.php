@@ -36,7 +36,9 @@
                                         <th>Kategori</th>
                                         <th>Nama</th>
                                         <th>Deskripsi</th>
-                                        <th>Harga</th>
+                                        <th>HPP</th>
+
+                                        <th>Harga Jual</th>
                                         <th>Diskon</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -90,7 +92,14 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">Harga</label>
+                            <label for="example-text-input" class="col-md-2 col-form-label">HPP</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="hpp" id="hpp">
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Harga Jual</label>
                             <div class="col-md-10">
                                 <input class="form-control" type="text" name="price" id="price">
 
@@ -172,7 +181,14 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">Harga</label>
+                            <label for="example-text-input" class="col-md-2 col-form-label">HPP</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="hpp" id="hpp">
+
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Harga Jual</label>
                             <div class="col-md-10">
                                 <input class="form-control" type="text" name="price" id="price">
 
@@ -261,6 +277,10 @@
                     {
                         data: 'description',
                         name: 'description'
+                    },
+                    {
+                        data: 'hpp',
+                        name: 'hpp'
                     },
                     {
                         data: 'price',

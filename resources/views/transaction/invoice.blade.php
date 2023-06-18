@@ -176,7 +176,7 @@
                                                 @endphp
                                                 <tr>
                                                     <td colspan="4" class="border-0 text-end">
-                                                        <strong>{{ $ac->name }}</strong>
+                                                        <strong>{{ $ac->name }} {{$ac->amount * 100}}%</strong>
                                                     </td>
                                                     <td colspan="3" class="border-0 text-end">
                                                         <input class="form-control" type="text" style="text-align: end"
@@ -194,7 +194,7 @@
                                                 <td colspan="3" class="border-0 text-end">
                                                     <h4 class="m-0">
                                                         <input class="form-control" type="text" style="text-align: end"
-                                                            value="{{ number_format($order->total_payment - $tax, '0', ',', '.') }}"
+                                                            value="{{ number_format($order->total_payment + $tax, '0', ',', '.') }}"
                                                             id="payment" name="payment" readonly>
                                                 </td>
                                             </tr>

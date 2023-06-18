@@ -58,6 +58,7 @@ class ProductController extends Controller
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'price' => 'required',
+            'hpp' => 'hpp',
             'discount' => 'nullable',
             'is_active' => 'required',
         ]);
@@ -74,6 +75,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'image' => 'product' . "/" . $imageName,
                 'price' => $request->price,
+                'hpp' => $request->hpp,
                 'discount' => $request->discount ?? NULL,
                 'is_active' => $request->is_active ? true : false,
             ]);
@@ -123,12 +125,15 @@ class ProductController extends Controller
                     'category_id' => $request->category_id,
                     'description' => $request->description,
                     'price' => $request->price,
+                    'hpp' => $request->hpp,
+
                     'discount' => $request->discount ?? NULL,
                     'is_active' => $request->is_active ? true : false,
                 ]);
             } else {
                 $product->update([
                     'category_id' => $request->category_id,
+                    'hpp' => $request->hpp,
 
                     'name' => $request->name,
                     'description' => $request->description,

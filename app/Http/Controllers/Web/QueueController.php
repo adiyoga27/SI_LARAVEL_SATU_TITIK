@@ -13,9 +13,9 @@ class QueueController extends Controller
     public function index(Request $request)
     {
 
-        $pending = OrderDetail::where('status', 'waiting')->count();
-        $proses = OrderDetail::where('status', 'proses')->count();
-        $finish = OrderDetail::where('status', 'finish')->count();
+        $pending = OrderDetail::where('status', 'waiting')->where('created_at', '>=',Carbon::now()->format('Y-m-d'))->count();
+        $proses = OrderDetail::where('status', 'proses')->where('created_at', '>=',Carbon::now()->format('Y-m-d'))->count();
+        $finish = OrderDetail::where('status', 'finish')->where('created_at', '>=',Carbon::now()->format('Y-m-d'))->count();
         if ($request->ajax()) {
             $data = OrderDetail::orderBy('status', 'ASC')->where('status', '<>', 'pending')->where('created_at', '>=',Carbon::now()->format('Y-m-d'));
             return DataTables::of($data)->addIndexColumn()
@@ -72,5 +72,22 @@ class QueueController extends Controller
 
         return redirect()->back()->with('success', 'Data berhasil dirubah');
 
+    }
+
+    public function queueStatus()
+    {
+        $pending = OrderDetail::where('status', 'waiting')->where('created_at', '>=',Carbon::now()->format('Y-m-d'))->count();
+        $proses = OrderDetail::where('status', 'proses')->where('created_at', '>=',Carbon::now()->format('Y-m-d'))->count();
+        $finish = OrderDetail::where('status', 'finish')->where('created_at', '>=',Carbon::now()->format('Y-m-d'))->count();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'success',
+            'data' => array(
+                'waiting' => $pending,
+                'proses' => $proses,
+                'serve' => $finish
+            )
+        ]);
     }
 }

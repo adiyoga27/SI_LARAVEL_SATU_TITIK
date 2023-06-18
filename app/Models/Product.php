@@ -14,6 +14,7 @@ class Product extends Model
         'name',
         'description',
         'image',
+        'hpp',
         'price',
         'discount',
         'is_active',
@@ -26,6 +27,7 @@ class Product extends Model
         'discount' => 'integer',
         'price' => 'integer',
         'is_active' => 'bool',
+        'hpp' => 'integer'
     ];
     public function category()
     {

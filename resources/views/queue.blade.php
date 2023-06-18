@@ -20,7 +20,81 @@
                 </div>
             </div>
             <!-- end page title -->
-   
+            <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                        <div class="col-md-3">
+                                                <div class="card border shadow-none mb-2">
+                                                <div class="text-body">
+                                                        <div class="p-2">
+                                                            <div class="d-flex">
+                                                                <div class="avatar-xs align-self-center me-2">
+                                                                    <div class="avatar-title rounded bg-transparent text-primary font-size-20">
+                                                                        <i class="mdi mdi-account-multiple"></i>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="overflow-hidden me-auto">
+                                                                    <h5 class="font-size-13 text-truncate mb-1">Menunggu</h5>
+                                                                    <p class="text-muted text-truncate mb-0  st-waiting">5</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card border shadow-none mb-2">
+                                                <div class="text-body">
+                                                        <div class="p-2">
+                                                            <div class="d-flex">
+                                                                <div class="avatar-xs align-self-center me-2">
+                                                                    <div class="avatar-title rounded bg-transparent text-secondary font-size-20">
+                                                                        <i class="mdi mdi-book-open"></i>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="overflow-hidden me-auto">
+                                                                    <h5 class="font-size-13 text-truncate mb-1">Pesanan Di Proses</h5>
+                                                                    <p class="text-muted text-truncate mb-0  st-proses">0</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card border shadow-none mb-2">
+                                                    <div class="text-body">
+                                                        <div class="p-2">
+                                                            <div class="d-flex">
+                                                                <div class="avatar-xs align-self-center me-2">
+                                                                    <div class="avatar-title rounded bg-transparent text-warning font-size-20">
+                                                                        <i class="mdi mdi-cached"></i>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="overflow-hidden me-auto">
+                                                                    <h5 class="font-size-13 text-truncate mb-1">Pesanan Diantarkan</h5>
+                                                                    <p class="text-muted text-truncate mb-0  st-serve">0</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                   
+                                     
+                                        </div>
+                                    </div>
+
+                                </div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -49,7 +123,7 @@
                 </div> <!-- end col -->
             </div> <!-- end row -->
 
-            <table>
+            <!-- <table>
                 <tr>
                     <td width="250px">Pesanan Menunggu</td>
                     <td >:</td>
@@ -65,7 +139,7 @@
                     <td>:</td>
                     <td>{{$finish}}</td>
                 </tr>
-            </table>
+            </table> -->
         </div>
     </div>
   
@@ -97,9 +171,11 @@
 
 $(document).ready(function() {
         
-            var table = $('#data-table').DataTable({
+             table = $('#data-table').DataTable({
+                searching: false,
                 processing: true,
                 serverSide: true,
+                lengthChange:false,
                 ajax: {
                     "url": "{{ url()->current() }}",
                     "type": "GET",
@@ -145,6 +221,24 @@ $(document).ready(function() {
             });
         });
 
+        setInterval(function(){
+            table.ajax.reload();
+        }, 5000);
        
+        setInterval(function(){
+            $.ajax({
+            url: "{{ url('queue') }}"+"/status",
+            method: 'GET',
+            success: function(response) {
+                // Assuming the response is the updated content
+                document.querySelector('.st-waiting').textContent = response.data.waiting;
+                document.querySelector('.st-proses').textContent = response.data.proses;
+                document.querySelector('.st-serve').textContent = response.data.serve;
+            },
+            error: function() {
+                console.log('Error occurred during the AJAX request');
+            }
+            });
+        }, 5000);
     </script>
 @endsection

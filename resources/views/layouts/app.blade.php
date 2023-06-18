@@ -178,10 +178,22 @@
                             </li>
                         @endif
                         <li>
-                            <a href="{{url('report')}}" class="waves-effect">
+                    
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-calendar-clock"></i>
-                                <span key="mdi-calendar-clock">Report</span>
+                                <span key="t-layouts">
+                                  Report
+                                    </span>
                             </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                            <li>
+                                        <a href="{{ url('report') }}" key="t-horizontal">Transaksi</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('report/laba') }}" key="t-horizontal">Laba Rugi</a>
+                                    </li>
+
+                            </ul>
                         </li>
 
 
