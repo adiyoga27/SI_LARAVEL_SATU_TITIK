@@ -15,4 +15,10 @@ class Category extends Model
         'image',
         'is_active',
     ];
+
+    protected $casts = [
+        'name' => 'string',
+        'description' => 'string',
+        'is_active' => 'integer',
+    ];
 }
