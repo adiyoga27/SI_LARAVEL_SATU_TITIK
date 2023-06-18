@@ -24,7 +24,8 @@ class Order extends Model
         'payment_number',
         'note',
         'uuid',
-        'pay'
+        'pay',
+        'paid_at'
     ];
 
     protected static function booted()
