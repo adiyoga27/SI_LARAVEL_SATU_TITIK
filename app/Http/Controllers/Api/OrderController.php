@@ -89,6 +89,8 @@ class OrderController extends Controller
                 'uuid' => 'required',
                 'product_id' => 'required',
                 'quantity' => 'required',
+                'note' => 'required',
+
             ]);
     
             $order = Order::where('uuid', $request->uuid)->first();
@@ -126,7 +128,8 @@ class OrderController extends Controller
                     'quantity' => $request->quantity,
                     'price' => $product->price,
                     'discount' => $discount,
-                    'total_price' => $totalPrice-$discount
+                    'total_price' => $totalPrice-$discount,
+                    'note' => $request->note
                 ]);
             }
            
