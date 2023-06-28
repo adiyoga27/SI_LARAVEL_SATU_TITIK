@@ -219,4 +219,13 @@ class OrderController extends Controller
             ]);
         }
     }
+
+    public function dinningTable() {
+        $data = DiningTable::all();
+        return response()->json([
+            'status' => true,
+            'message' => "success",
+            'data' => $data
+        ]);
+    }
 }

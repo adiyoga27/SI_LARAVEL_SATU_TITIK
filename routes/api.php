@@ -33,5 +33,6 @@ Route::post('login', [AuthController::class, 'login']);
     Route::delete('delete-cart/{id}' , [OrderController::class, 'deleteCart']);
     Route::get('order/{uuid}' , [OrderController::class, 'order']);
     Route::post('checkout/{uuid}' , [OrderController::class, 'checkout']);
+    Route::get('dinning-table', [OrderController::class, 'dinningTable']);
 // });
 
