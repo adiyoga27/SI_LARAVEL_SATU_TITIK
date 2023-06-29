@@ -108,6 +108,7 @@
                                         <th>Harga</th>
                                         <th>Jumlah</th>
                                         <th>Meja</th>
+                                        <th>Note</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -202,7 +203,10 @@ $(document).ready(function() {
                         data: 'dinning_number',
                         name: 'dinning_number'
                     },
-                   
+                    {
+                        data: 'note',
+                        name: 'note'
+                    },
                     {
                         data: 'status',
                         name: 'status'
